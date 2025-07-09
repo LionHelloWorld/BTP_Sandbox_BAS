@@ -1,0 +1,29 @@
+{
+  "generationParameters": {
+    "generationDate": "Mon Jul 07 2025 00:57:06 GMT+0000 (Coordinated Universal Time)",
+    "generatorPlatform": "SAP Business Application Studio",
+    "serviceType": "SAP System (ABAP Environment on SAP Business Technology Platform)",
+    "metadataFilename": "",
+    "serviceUrl": "https://b54b25b5-9a0d-445a-a3e9-15f2ce5ce259.abap.eu10.hana.ondemand.com/sap/opu/odata4/sap/zui_lion_mpb/srvd/sap/zsd_lion_mpb/0001/",
+    "appName": "zlion_app_mpb",
+    "appTitle": "MPB Monitor",
+    "appDescription": "An SAP Fiori application.",
+    "appNamespace": "",
+    "ui5Theme": "sap_horizon",
+    "ui5Version": "1.133.4",
+    "enableCodeAssist": false,
+    "enableEslint": false,
+    "enableTypeScript": false,
+    "showMockDataInfo": true,
+    "generatorVersion": "1.18.1",
+    "template": "List Report Page V4",
+    "generatorName": "SAP Fiori Application Generator",
+    "entityRelatedConfig": [
+      {
+        "type": "Main Entity",
+        "value": "mpb"
+      }
+    ],
+    "launchText": "In order to launch the generated app, simply run the following from the generated app root folder:\n\n```\n    npm start\n```"
+  }
+}

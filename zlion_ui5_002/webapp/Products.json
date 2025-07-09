@@ -1,0 +1,20 @@
+{
+  "Products": [
+    {
+      "product": "401731",
+      "product_type": "PR",
+      "product_category": "Notebooks",
+      "price": "100.00",
+      "currency": "EUR",
+      "supplier": "100000046"
+    },
+    {
+      "product": "475197",
+      "product_type": "PR",
+      "product_category": "Notebooks",
+      "price": "123.12",
+      "currency": "EUR",
+      "supplier": "100000046"
+    }
+  ]
+}

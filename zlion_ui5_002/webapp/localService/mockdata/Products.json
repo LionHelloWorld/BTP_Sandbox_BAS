@@ -1,0 +1,18 @@
+[
+	{
+		"product": "HT-1000",
+		"product_type": "PR",
+		"product_category": "Notebooks",
+		"supplier": "100000046",
+		"price": "956.00",
+		"currency": "USD"
+	},
+	{
+		"product": "HT-1001",
+		"product_type": "PR",
+		"product_category": "Notebooks",
+		"supplier": "100000047",
+		"price": "100.00",
+		"currency": "CNY"
+	}
+]

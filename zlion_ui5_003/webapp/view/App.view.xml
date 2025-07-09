@@ -1,0 +1,108 @@
+<mvc:View
+    controllerName="lion.zlionui5003.controller.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:table="sap.ui.table"
+    displayBlock="true"
+>
+    <Shell id="shell">
+        <App>
+            <pages>
+                <Page title="{i18n>appTitle}">
+                    <VBox class="sapUiSmallMargin">
+                        <Toolbar>
+                            <Title
+                                text="{i18n>quotationList}"
+                                level="H2"
+                            />
+                            <ToolbarSpacer />
+                            <Button
+                                text="{i18n>add}"
+                                icon="sap-icon://add"
+                                press="onAdd"
+                            />
+                            <Button
+                                text="{i18n>edit}"
+                                icon="sap-icon://edit"
+                                press="onEditSelected"
+                                enabled="{= !!${viewModel>/selectedItem}}"
+                            />
+                            <Button
+                                text="{i18n>delete}"
+                                icon="sap-icon://delete"
+                                press="onDeleteSelected"
+                                type="Reject"
+                                enabled="{= !!${viewModel>/selectedItem}}"
+                            />
+                        </Toolbar>
+
+                        <Toolbar>
+                            <SearchField
+                                width="50%"
+                                placeholder="{i18n>searchPlaceholder}"
+                                search="onSearch"
+                            />
+                        </Toolbar>
+
+                        <table:Table
+                            id="quotationTable"
+                            rows="{quotations>/Quotation}"
+                            selectionMode="Single"
+                            rowSelectionChange="onRowSelectionChange"
+                            threshold="0"
+                        >
+                            <table:columns>
+                                <table:Column>
+                                    <Label text="{i18n>columnId}" />
+                                    <table:template>
+                                        <Text text="{quotations>QuotationId}" />
+                                    </table:template>
+                                </table:Column>
+                                <table:Column>
+                                    <Label text="{i18n>columnCustomer}" />
+                                    <table:template>
+                                        <Text text="{quotations>Customer}" />
+                                    </table:template>
+                                </table:Column>
+                                <table:Column>
+                                    <Label text="{i18n>columnTotal}" />
+                                    <table:template>
+                                        <ObjectNumber
+                                            number="{
+                                        parts: [
+                                            'quotations>TotalPrice',
+                                            'quotations>CurrencyCode'
+                                        ],
+                                        type: 'Currency',
+                                        formatOptions: {
+                                            showMeasure: false
+                                        }
+                                    }"
+                                        />
+                                    </table:template>
+                                </table:Column>
+                            </table:columns>
+                        </table:Table>
+
+                        <HBox
+                            class="sapUiTinyMarginTop"
+                            justifyContent="Center"
+                        >
+                            <Button
+                                text="{i18n>prevPage}"
+                                icon="sap-icon://navigation-left-arrow"
+                                press="onPrevPage"
+                            />
+                            <Button
+                                text="{i18n>nextPage}"
+                                icon="sap-icon://navigation-right-arrow"
+                                press="onNextPage"
+                                class="sapUiTinyMarginBegin"
+                            />
+                        </HBox>
+                    </VBox>
+                </Page>
+            </pages>
+        </App>
+    </Shell>
+</mvc:View>

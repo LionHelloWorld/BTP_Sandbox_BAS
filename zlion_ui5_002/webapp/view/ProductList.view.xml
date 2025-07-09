@@ -1,0 +1,65 @@
+<mvc:View controllerName="lion.zlionui5002.controller.ProductList"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc">
+    <Panel id="_IDGenPanel" accessibleRole="Region">
+        <headerToolbar>
+            <Toolbar id="_IDGenToolbar">
+                <Title id="_IDGenTitle" text="{i18n>productListTitle}" />
+                <ToolbarSpacer id="_IDGenToolbarSpacer" />
+                <SearchField id="_IDGenSearchField" width="50%" search=".onFilterProducts" />
+            </Toolbar>
+        </headerToolbar>
+        <Table id="productList" class="sapUiResponsiveMargin" width="auto" items="{
+				path : 'product>/Products',
+                sorter : {
+                    path : 'product',
+                    group : true
+                }                
+			}" growing="true" growingThreshold="2" growingScrollToLoad="false">
+            <columns>
+                <Column id="_IDGenColumn1" hAlign="End" minScreenWidth="Small" demandPopin="true" width="5em">
+                    <Text id="_IDGenText1" text="{i18n>columnProduct}" />
+                </Column>
+                <Column id="_IDGenColumn2">
+                    <Text id="_IDGenText2" text="{i18n>columnProductType}" />
+                </Column>
+                <Column id="_IDGenColumn3" minScreenWidth="Small" demandPopin="true">
+                    <Text id="_IDGenText3" text="{i18n>columnProductCategory}" />
+                </Column>
+                <Column id="_IDGenColumn4" minScreenWidth="Tablet" demandPopin="false">
+                    <Text id="_IDGenText4" text="{i18n>columnSupplier}" />
+                </Column>
+                <Column id="_IDGenColumn5" hAlign="End">
+                    <Text id="_IDGenText5" text="{i18n>columnPrice}" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem id="_IDGenColumnListItem" type="Navigation" press=".onPress">
+                    <cells>
+                        <ObjectNumber id="_IDGenObjectNumber" number="{product>product}" emphasized="false" />
+
+                        <Text id="_IDGenText6" text="{product>product_type}" />
+
+                        <ObjectIdentifier id="_IDGenObjectIdentifier" title="{product>product_category}" />
+
+                        <Text id="_IDGenText7" text="{product>supplier}" />
+
+                        <ObjectNumber id="_IDGenObjectNumber1" core:require="{
+								Currency: 'sap/ui/model/type/Currency'
+							}" number="{
+								parts: [
+									'product>price',
+									'product>currency'
+								],
+								type: 'Currency',
+								formatOptions: {
+									showMeasure: false
+								}
+							}" unit="{product>currency}" state="{= ${product>price} > 120 ? 'Error' : 'Success' }" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Panel>
+</mvc:View>

@@ -1,0 +1,36 @@
+<mvc:View controllerName="lion.zlionui5002.controller.Detail"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:wt="lion.zlionui5002.control">
+	<Page id="_DetailPage" title="{i18n>detailPageTitle}" showNavButton="true" navButtonPress=".onNavBack">
+		<ObjectHeader id="_DetailObjectHeader" core:require="{
+				Date: 'sap/ui/model/type/Date',
+				Currency: 'sap/ui/model/type/Currency'
+			}" responsive="true" fullScreenOptimized="true" number="{
+				parts: [
+					'invoice>ExtendedPrice',
+					'view>/currency'
+				],
+				type: 'Currency',
+				formatOptions: {
+					showMeasure: false
+				}
+			}" numberUnit="{view>/currency}" intro="{invoice>ShipperName}" title="{invoice>ProductName}">
+			<attributes>
+				<ObjectAttribute id="_IDGenObjectAttribute1" title="{i18n>quantityTitle}" text="{invoice>Quantity}" />
+				<ObjectAttribute id="_IDGenObjectAttribute2" title="{i18n>dateTitle}" text="{
+						path: 'invoice>ShippedDate',
+						type: 'Date',
+						formatOptions: {
+							style: 'long',
+							source: {
+							pattern: 'yyyy-MM-ddTHH:mm:ss'
+							}
+						}
+					}" />
+			</attributes>
+		</ObjectHeader>
+		<wt:ProductRating id="rating" class="sapUiSmallMarginBeginEnd" change=".onRatingChange" />
+	</Page>
+</mvc:View>

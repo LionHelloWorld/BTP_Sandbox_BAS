@@ -1,0 +1,20 @@
+<mvc:View controllerName="lion.zlionui5002.controller.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m" displayBlock="true">
+    <Shell id="shell">
+        <App id="app" class="myAppDemoWT">
+            <pages>
+                <Page id="page" title="{i18n>homePageTitle}" titleAlignment="Center">
+                    <!-- <landmarkInfo>
+                        <PageAccessibleLandmarkInfo id="_IDGenPageAccessibleLandmarkInfo" rootRole="Region" rootLabel="{i18n>Overview_rootLabel}" contentRole="Main" contentLabel="{i18n>Overview_contentLabel}" headerRole="Banner" headerLabel="{i18n>Overview_headerLabel}" />
+                    </landmarkInfo> -->
+
+                    <content>
+                        <mvc:XMLView id="_helloPanel" viewName="lion.zlionui5002.view.HelloPanel" />
+                        <mvc:XMLView id="_productList" viewName="lion.zlionui5002.view.ProductList" />
+                    </content>
+                </Page>
+            </pages>
+        </App>
+    </Shell>
+</mvc:View>
