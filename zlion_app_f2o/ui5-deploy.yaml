@@ -19,7 +19,7 @@ builder:
           scp: true
         app:
           name: ZLION_F2O
-          package: z_file2order
+          package: Z_FILE2ORDER
           transport: H01K900104
         exclude:
           - /test/

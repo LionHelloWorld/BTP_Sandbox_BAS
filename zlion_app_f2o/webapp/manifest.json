@@ -139,6 +139,18 @@
                     "type": "ResponsiveTable"
                   }
                 }
+              },
+              "content": {
+                "header": {
+                  "actions": {
+                    "_upload": {
+                      "press": "zlionappf2o.ext.controller.UploadCollection.onUploadPress",
+                      "visible": true,
+                      "enabled": true,
+                      "text": "{i18n>upload}"
+                    }
+                  }
+                }
               }
             }
           }
@@ -152,6 +164,15 @@
               "editableHeaderContent": false,
               "contextPath": "/file2order"
             }
+          }
+        }
+      }
+    },
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.fe.templates.ListReport.ListReportController": {
+            "controllerName": "zlionappf2o.ext.controller.ListReportExt"
           }
         }
       }

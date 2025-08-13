@@ -1,0 +1,127 @@
+// sap.ui.define([
+//     "sap/m/MessageToast"
+// ], function(MessageToast) {
+//     'use strict';
+
+//     return {
+//         UploadCollection: function(oEvent) {
+//             MessageToast.show("Custom handler invoked.");
+//         }
+//     };
+// });
+
+sap.ui.define(
+  [
+    // "sap/ui/core/mvc/Controller",
+    "sap/m/MessageToast",
+    "sap/ui/core/BusyIndicator",
+    //"sap/ui/core/Component",
+  ],
+  function (MessageToast, BusyIndicator) {
+    "use strict";
+
+    return {
+      onUploadPress: function (oEvent) {
+        //Get OData Model
+        const oModel = this.getModel(); //Main Service Model
+        if (!oModel) {
+          MessageToast.show("Model not found");
+          return;
+        }
+
+        const fileInput = document.createElement("input");
+        fileInput.type = "file";
+        fileInput.multiple = true;
+        fileInput.style.display = "none";
+        fileInput.onchange = function (event) {
+          const files = event.target.files;
+          if (!files || files.length === 0) {
+            MessageToast.show("No files selected.");
+            return;
+          }
+
+          // BusyIndicator.show(0);
+          // let uploadCount = 0;
+          // const totalFiles = files.length;
+          // const handleUploadCompletion = () => {
+          //   uploadCount++;
+          //   if (uploadCount === totalFiles) {
+          //     BusyIndicator.hide();
+          //     MessageToast.show(
+          //       `Upload completed: ${uploadCount}/${totalFiles} files`
+          //     );
+          //   }
+          // };
+
+          Array.from(files).forEach((file) => {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+              const base64 = e.target.result.split(",")[1];
+              const payload = {
+                attachment: base64,
+                mime_type: file.type,
+                file_name: file.name,
+              };
+
+              try {
+                const sPath = oModel.sServiceUrl;
+                const oAction = oModel.bindContext("/file2order/com.sap.gateway.srvd.zui_lion_file2order_o4.v0001.upload(...)"); //Static action
+                for (const key in payload) {
+                  if (Object.prototype.hasOwnProperty.call(payload, key)) {
+                    oAction.setParameter(key, payload[key]);
+                  }
+                }
+                oAction
+                  .execute()
+                  .then(() => {
+                    sap.m.MessageToast.show(`Uploaded: ${file.name}`);
+                  })
+                  .catch((err) => {
+                    sap.m.MessageToast.show(
+                      `Failed: ${file.name} - ${err.message}`
+                    );
+                  });
+                // await oAction.execute();
+                // const oContext = oAction.getBoundContext();
+                // const oResult = oContext.getObject();
+                // sap.m.MessageToast.show(`Uploaded: ${file.name}`);
+                // this.handleUploadCompletion(oResult);
+              } catch (oError) {
+                sap.m.MessageToast.show(
+                  `Failed: ${file.name} - ${oError.message}`
+                );
+                // handleUploadCompletion();
+              }
+
+              //   oModel.callFunction("/upload", {
+              //     method: "POST",
+              //     data: payload,
+              //     success: function () {
+              //       MessageToast.show(`Uploaded: ${file.name}`);
+              //       handleUploadCompletion();
+              //     },
+              //     error: function (oError) {
+              //       MessageToast.show(`Failed: ${file.name} - ${oError.message}`);
+              //       handleUploadCompletion();
+              //     },
+              //   }
+              // );
+            }.bind(this);
+
+            reader.onerror = () => {
+              MessageToast.show(`Read error: ${file.name}`);
+              // handleUploadCompletion();
+            };
+
+            reader.readAsDataURL(file);
+          });
+        }.bind(this);
+
+        document.body.appendChild(fileInput);
+        fileInput.click();
+        document.body.removeChild(fileInput);
+      },
+    };
+  }
+);
