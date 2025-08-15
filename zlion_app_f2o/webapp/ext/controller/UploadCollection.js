@@ -40,18 +40,18 @@ sap.ui.define(
             return;
           }
 
-          // BusyIndicator.show(0);
-          // let uploadCount = 0;
-          // const totalFiles = files.length;
-          // const handleUploadCompletion = () => {
-          //   uploadCount++;
-          //   if (uploadCount === totalFiles) {
-          //     BusyIndicator.hide();
-          //     MessageToast.show(
-          //       `Upload completed: ${uploadCount}/${totalFiles} files`
-          //     );
-          //   }
-          // };
+          BusyIndicator.show(0);
+          let uploadCount = 0;
+          const totalFiles = files.length;
+          const handleUploadCompletion = () => {
+            uploadCount++;
+            if (uploadCount === totalFiles) {
+              BusyIndicator.hide();
+              MessageToast.show(
+                `Upload completed: ${uploadCount}/${totalFiles} files`
+              );
+            }
+          };
 
           Array.from(files).forEach((file) => {
             const reader = new FileReader();
@@ -66,7 +66,9 @@ sap.ui.define(
 
               try {
                 const sPath = oModel.sServiceUrl;
-                const oAction = oModel.bindContext("/file2order/com.sap.gateway.srvd.zui_lion_file2order_o4.v0001.upload(...)"); //Static action
+                const oAction = oModel.bindContext(
+                  "/file2order/com.sap.gateway.srvd.zui_lion_file2order_o4.v0001.upload(...)"
+                ); //Static action
                 for (const key in payload) {
                   if (Object.prototype.hasOwnProperty.call(payload, key)) {
                     oAction.setParameter(key, payload[key]);
@@ -82,36 +84,17 @@ sap.ui.define(
                       `Failed: ${file.name} - ${err.message}`
                     );
                   });
-                // await oAction.execute();
-                // const oContext = oAction.getBoundContext();
-                // const oResult = oContext.getObject();
-                // sap.m.MessageToast.show(`Uploaded: ${file.name}`);
-                // this.handleUploadCompletion(oResult);
               } catch (oError) {
                 sap.m.MessageToast.show(
                   `Failed: ${file.name} - ${oError.message}`
                 );
-                // handleUploadCompletion();
+                handleUploadCompletion();
               }
-
-              //   oModel.callFunction("/upload", {
-              //     method: "POST",
-              //     data: payload,
-              //     success: function () {
-              //       MessageToast.show(`Uploaded: ${file.name}`);
-              //       handleUploadCompletion();
-              //     },
-              //     error: function (oError) {
-              //       MessageToast.show(`Failed: ${file.name} - ${oError.message}`);
-              //       handleUploadCompletion();
-              //     },
-              //   }
-              // );
             }.bind(this);
 
             reader.onerror = () => {
               MessageToast.show(`Read error: ${file.name}`);
-              // handleUploadCompletion();
+              handleUploadCompletion();
             };
 
             reader.readAsDataURL(file);
