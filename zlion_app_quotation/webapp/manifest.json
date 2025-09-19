@@ -41,6 +41,7 @@
           "semanticObject": "zlion_app_quotation",
           "action": "display",
           "title": "{{flpTitle}}",
+          "icon": "sap-icon://sales-quote",
           "signature": {
             "parameters": {},
             "additionalParameters": "allowed"

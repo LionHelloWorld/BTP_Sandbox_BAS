@@ -41,6 +41,7 @@
           "semanticObject": "F2O",
           "action": "overview",
           "title": "{{F2O-overview.flpTitle}}",
+          "icon": "sap-icon://sales-document",          
           "signature": {
             "parameters": {},
             "additionalParameters": "allowed"
@@ -144,7 +145,7 @@
                 "header": {
                   "actions": {
                     "_upload": {
-                      "press": "zlionappf2o.ext.controller.UploadCollection.onUploadPress",
+                      "press": ".extension.zlionappf2o.ext.controller.ListReportExt.onUploadPress",
                       "visible": true,
                       "enabled": true,
                       "text": "{i18n>upload}"
