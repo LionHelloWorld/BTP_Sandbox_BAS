@@ -92,7 +92,7 @@ sap.ui.define(
                       const results = payloadArray.map((file) => {
                         return {
                           fileName: file.file_name,
-                          message: "Upload completed, waiting for background processing",
+                          message: "Upload completed, waiting for backend processing",
                           status: "Success"
                         };
                       });
