@@ -12,7 +12,7 @@
 
 sap.ui.define(
   [
-    // "sap/ui/core/mvc/Controller",
+    //"sap/ui/core/mvc/Controller",
     //"sap/ui/core/Component",
     "sap/m/MessageToast",
     "sap/ui/core/BusyIndicator",
@@ -33,8 +33,7 @@ sap.ui.define(
 
     return {
       // onUploadPress: function (oEvent) {
-      //   //Get OData Model
-      //   const oModel = this.getModel(); //Main Service Model
+      //   const oModel = this.getModel();
       //   if (!oModel) {
       //     MessageToast.show("Model not found");
       //     return;

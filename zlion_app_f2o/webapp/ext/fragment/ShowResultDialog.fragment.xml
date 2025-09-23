@@ -1,0 +1,30 @@
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core">
+
+  <!-- Dialog to show upload results -->
+  <Dialog
+    id="uploadResultDialog"
+    title="Upload Results"
+    contentWidth="400px"
+    contentHeight="300px"  
+    resizable="true"      
+    draggable="true" 
+    afterClose=".onUploadResultDialogClose">
+
+    <!-- List bound directly to JSON model "uploadResults>/files" -->
+    <List id="uploadResultList" items="{uploadResults>/files}">
+      <StandardListItem
+        title="{uploadResults>fileName}"
+        description="{uploadResults>message}"
+        info="{uploadResults>status}"
+        type="Inactive"
+        infoState="{= ${uploadResults>status} === 'Success' ? 'Success' : 'Error'}"/>
+    </List>
+
+    <!-- OK button to close dialog -->
+    <beginButton>
+      <Button text="OK" press=".onUploadResultDialogOk"/>
+    </beginButton>
+  </Dialog>
+</core:FragmentDefinition>
